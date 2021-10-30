@@ -1,6 +1,5 @@
-const correo = document.querySelector("#correo");
-const password = document.querySelector("#password");
-const formLogin = document.querySelector("#formLogin");
+const documento = document.querySelector("#documento");
+const password = document.querySelector("#contraseña");
 const btnIngresar = document.querySelector("#btn-ingresar");
 
 eventListener();
@@ -8,7 +7,7 @@ iniciarApp();
 
 //eventListener
 function eventListener() {
-    correo.addEventListener("blur", validarForm);
+    documento.addEventListener("blur", validarForm);
     password.addEventListener("blur", validarForm);
 }
 
@@ -19,7 +18,7 @@ function validarForm(e) {
         e.target.classList.add("border", "border-danger");
     }
 
-    if (correo.value !== "") {
+    if (documento.value !== "") {
         btnIngresar.disabled = false;
         btnIngresar.classList.remove("text-dark");
     }
