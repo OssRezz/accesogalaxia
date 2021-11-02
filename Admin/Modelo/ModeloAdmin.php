@@ -73,4 +73,33 @@ class Admin extends Conexion
             return false;
         }
     }
+    
+    /**
+     * updateEmpresa
+     * 
+     * Actualiza una empresa
+     * recibe como parametros:
+     * El Nit de la empresa
+     * Nombre y estado. 
+     * 
+     * Se crea un campo con el nuevo nit para mantener el antiguo en caso de que deseaen modificarlo.
+     *
+     * @param  mixed $nit
+     * @param  mixed $empId
+     * @param  mixed $empNombre
+     * @param  mixed $empEstado
+     * @return void
+     */
+    public function updateEmpresa($nit, $empNombre, $empEstado)
+    {
+        $statement = $this->db->prepare("UPDATE `tblempresas` SET `empId`=:nit,`empNombre`=:empNombre,`empEstado`=:empEstado WHERE empId=:nit");
+        $statement->bindParam(':nit', $nit);
+        $statement->bindParam(':empNombre', $empNombre);
+        $statement->bindParam(':empEstado', $empEstado);
+        if ($statement->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

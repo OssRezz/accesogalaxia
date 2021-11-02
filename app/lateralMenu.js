@@ -1,7 +1,7 @@
 $(document).ready(function () {
-  const perfil = 1;
+  const perfil = $("#perfil").val();
   const title = $(document).attr("title");
-
+  console.log(perfil)
   //Carga el menu lateral, dependiendo del rol del usuario
 
   $.post("../../componentes/lateralMenu.php",{

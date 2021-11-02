@@ -56,9 +56,15 @@ class Sesion extends Conexion
     {
         if ($_SESSION['empresa'] != null) {
             $empresa = $_SESSION['empresa'];
-        } else {
-            $empresa = '';
         }
         return $empresa;
+    }
+
+    public function getPerfil()
+    {
+        if ($_SESSION['rol'] != null) {
+            $perfil = $_SESSION['rol'];
+        }
+        return $perfil;
     }
 }

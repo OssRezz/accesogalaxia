@@ -3,6 +3,8 @@ require '../../sesion/Modelo/ModeloSesion.php';
 
 $sesion = new Sesion();
 $usuario = $sesion->getUsuario();
+$perfil = $sesion->getPerfil();
+
 $avatar = $sesion->getAvatar();
 $url = "../../images/avatar/" . $avatar;
 
@@ -32,6 +34,9 @@ $url = "../../images/avatar/" . $avatar;
 </head>
 
 <body>
+<div id="respuesta">
+    <input type="hidden" id="perfil" value="<?php echo $perfil ?>">
+  </div>
   <div class="wrapper">
     <!-- Sidebar  -->
     <nav id="sidebar">

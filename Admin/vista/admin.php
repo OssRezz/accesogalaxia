@@ -6,6 +6,8 @@ $admin = new Admin();
 
 $sesion = new Sesion();
 $usuario = $sesion->getUsuario();
+$perfil = $sesion->getPerfil();
+
 $avatar = $sesion->getAvatar();
 $url = "../../images/avatar/" . $avatar;
 
@@ -37,7 +39,9 @@ $url = "../../images/avatar/" . $avatar;
 </head>
 
 <body>
-  <div id="respuesta"></div>
+  <div id="respuesta">
+    <input type="hidden" id="perfil" value="<?php echo $perfil ?>">
+  </div>
   <div class="wrapper">
     <!-- Sidebar  -->
     <nav id="sidebar">
@@ -107,7 +111,9 @@ $url = "../../images/avatar/" . $avatar;
                         ?>
 
                         <td><?php echo $empresa ?></td>
-                        <td class="text-center"><a href=""><i class="fas fa-edit text-primary"></i></a></td>
+                        <td class="text-center">
+                          <button class="btn btn-link btn-sm" value="<?php echo $Empresas['empId'] ?>" id="btn-editar-empresa"><i class="fas fa-edit text-primary" style='pointer-events: none;'></i></button>
+                        </td>
 
                     </tr>
                   <?php
@@ -137,7 +143,6 @@ $url = "../../images/avatar/" . $avatar;
   <script src="../../app/hbMenu.js"></script>
   <script src="../../app/lateralMenu.js"></script>
   <script src="../app//script.js"></script>
-  <script src="../app/pagination.js"></script>
 </body>
 
 </html>

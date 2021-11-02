@@ -186,6 +186,10 @@ body.scrolly {
   overflow-x: hidden;
 }
 
+.not-pointer{
+  pointer-events: none;
+}
+
 /* ---------------------------------------------------
     Colores corporativos
 ----------------------------------------------------- */

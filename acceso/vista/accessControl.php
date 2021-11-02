@@ -6,7 +6,12 @@ $adicciones =  new Acceso();
 $sesion = new Sesion();
 
 $empresa = $sesion->getEmpresa();
+$perfil = $sesion->getPerfil();
+
 $empresaEstado = $adicciones->listaAdicciones($empresa);
+if ($empresaEstado === null) {
+  $empresaEstado = [];
+}
 
 $usuario = $sesion->getUsuario();
 $avatar = $sesion->getAvatar();
@@ -39,6 +44,9 @@ $url = "../../images/avatar/" . $avatar;
 </head>
 
 <body>
+  <div id="respuesta">
+    <input type="hidden" id="perfil" value="<?php echo $perfil ?>">
+  </div>
   <div class="wrapper">
     <!-- Sidebar  -->
     <nav id="sidebar">
@@ -126,7 +134,7 @@ $url = "../../images/avatar/" . $avatar;
                   </div>
                 </div>
                 <?php
-                foreach ($empresaEstado as $empresaEstado) {
+                foreach ($empresaEstado as $empresaEstadFo) {
                   if ($empresaEstado['adiCampo'] === "Arma" && $empresaEstado['adiEstado'] === "1") {
                 ?>
                     <div class="form-row mb-3">
