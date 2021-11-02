@@ -7,11 +7,11 @@ $sesion = new Sesion();
 
 $empresa = $sesion->getEmpresa();
 $perfil = $sesion->getPerfil();
-
 $empresaEstado = $adicciones->listaAdicciones($empresa);
-if ($empresaEstado === null) {
+if($empresaEstado){
   $empresaEstado = [];
 }
+
 
 $usuario = $sesion->getUsuario();
 $avatar = $sesion->getAvatar();
@@ -134,7 +134,7 @@ $url = "../../images/avatar/" . $avatar;
                   </div>
                 </div>
                 <?php
-                foreach ($empresaEstado as $empresaEstadFo) {
+                foreach ($empresaEstado as $empresaEstado) {
                   if ($empresaEstado['adiCampo'] === "Arma" && $empresaEstado['adiEstado'] === "1") {
                 ?>
                     <div class="form-row mb-3">

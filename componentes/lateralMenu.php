@@ -27,7 +27,7 @@ function clienteMenu($title)
 
     if ($title === "Reportes") {
         $reportes = "active";
-    } else if ($title === "Configuraciones") {
+    } else if ($title === "Configuracion") {
         $Configuraciones = "active";
     }
     echo  "<li class='$reportes'>";
@@ -35,7 +35,7 @@ function clienteMenu($title)
     echo  "</li>";
 
     echo  "<li class='$Configuraciones'>";
-    echo  "<a href='#'><i class='fas fa-cog'></i> Configuraciòn</a>";
+    echo  "<a href='../../configuracion/vista/config.php'><i class='fas fa-cog'></i> Configuraciòn</a>";
     echo  "</li>";
 }
 
