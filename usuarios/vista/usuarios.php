@@ -1,3 +1,14 @@
+<?php
+require '../../sesion/Modelo/ModeloSesion.php';
+
+$sesion = new Sesion();
+$usuario = $sesion->getUsuario();
+$avatar = $sesion->getAvatar();
+$url = "../../images/avatar/" . $avatar;
+
+?>
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -41,10 +52,10 @@
             <div class="div d-flex justify-content-end g-3 align-items-center">
               <i class="fas fa-expand-arrows-alt"></i>
               <i class="fas fa-bell text-center galaxia-red mx-3 fa-lg"></i>
-              <img src="../../images/avatar.png" alt="Avatar" class="avatar" />
+              <img src="<?php echo $url ?>" alt="Avatar" class="avatar" />
               <!-- Drop -->
               <div class="btn-group">
-                <button type="button" class="btn btn-link text-muted px-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">David Rodriguez <i class="fas fa-caret-down"></i></button>
+                <button type="button" class="btn btn-link text-muted px-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $usuario ?><i class="fas fa-caret-down"></i></button>
                 <div class="dropdown-menu dropdown-menu-right">
                   <a class="dropdown-item text-primary" href="#">Cerrar sesion <i class="fas fa-sign-out-alt"></i></a>
                 </div>

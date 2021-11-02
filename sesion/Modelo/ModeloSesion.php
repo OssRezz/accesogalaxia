@@ -27,4 +27,38 @@ class Sesion extends Conexion
         }
         return false;
     }
+
+    public function getUsuario()
+    {
+        if ($_SESSION['nombre'] != null) {
+
+            $Separador = str_replace(" ", ' ', $_SESSION['nombre']);
+            $usuarioArray = preg_split("/\ /", $Separador);
+            $user = $usuarioArray[0] . " " . $usuarioArray[1];
+            return $user;
+        } else {
+            header('Location: ../../index.php');
+        }
+    }
+
+    public function getAvatar()
+    {
+        if ($_SESSION['avatar'] != null) {
+
+            $avatar = $_SESSION['avatar'];
+            return $avatar;
+        } else {
+            $avatar = 'default.png';
+        }
+    }
+
+    public function getEmpresa()
+    {
+        if ($_SESSION['empresa'] != null) {
+            $empresa = $_SESSION['empresa'];
+        } else {
+            $empresa = '';
+        }
+        return $empresa;
+    }
 }

@@ -16,7 +16,8 @@
 </head>
 
 <body class="index">
-    <div class="container" id="respuesta">
+    <div id="respuesta"></div>
+    <div class="container">
 
         <div class="row d-flex justify-content-center">
 

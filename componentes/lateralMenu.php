@@ -13,25 +13,25 @@ function adminMenu($title)
         $Administracion = "active";
     }
     echo  "<li class='$Usuarios'>";
-    echo  "<a href='../../usuarios/vista/usuarios.html'><i class='fas fa-user'></i> Usuarios</a>";
+    echo  "<a href='../../usuarios/vista/usuarios.php'><i class='fas fa-user'></i> Usuarios</a>";
     echo  "</li>";
     echo  "<li class='$Administracion'>";
-    echo  "<a href='#'><i class='fas fa-user-shield'></i> Administracìon</a>";
+    echo  "<a href='../../admin/vista/admin.php'><i class='fas fa-user-shield'></i> Administracìon</a>";
     echo  "</li>";
 }
 
 function clienteMenu($title)
 {
-    $Home = "";
+    $reportes = "";
     $Configuraciones = "";
 
     if ($title === "Reportes") {
-        $Home = "active";
+        $reportes = "active";
     } else if ($title === "Configuraciones") {
         $Configuraciones = "active";
     }
-    echo  "<li class='$Home'>";
-    echo  "<a href='../../home/vista/home.html'><i class='fas fa-flag'> </i> Reportes</a>";
+    echo  "<li class='$reportes'>";
+    echo  "<a href='../../reportes/vista/reportes.php'><i class='fas fa-flag'> </i> Reportes</a>";
     echo  "</li>";
 
     echo  "<li class='$Configuraciones'>";
@@ -46,7 +46,7 @@ function vigilanteMenu($title)
         $Acceso = "active";
     }
     echo  "<li class='$Acceso'>";
-    echo  "<a href='../../acceso/vista/accessControl.html'><i class='fas fa-door-open'></i> Control de acceso</a>";
+    echo  "<a href='../../acceso/vista/accessControl.php'><i class='fas fa-door-open'></i> Control de acceso</a>";
     echo  "</li>";
 }
 
