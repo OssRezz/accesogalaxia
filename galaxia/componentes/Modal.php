@@ -25,7 +25,7 @@ class Modal
         echo "<script>$('#modalInfo').modal('show')</script>";
     }
 
-    public function modalAlerta($color, $tituloModal, $contenido)
+    public function modalAlerta($color,$tituloModal, $contenido)
     {
         echo "<!-- Modal -->";
         echo "<div class='modal fade' id='modalAlerta' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true' style='display: block;' data-keyboard='false' data-backdrop='static'>";
@@ -67,30 +67,5 @@ class Modal
         echo "</div>";
         echo "<script>$('#modalForm').modal('show')</script>";
         echo "<script>$('#close').click(function(){location.reload()});</script>";
-    }
-
-    public function modalEliminar($tituloModal, $contenidoModal, $contenidoFooter)
-    {
-        echo "<div class='modal ' id='modalForm' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true' style='display: block;' data-keyboard='false' data-backdrop='static'>";
-        echo "  <div class='modal-dialog modal-dialog-centered'>";
-        echo "    <div class='modal-content'>";
-        echo "      <div class='modal-header bg-light'>";
-        echo "        <h5 class='modal-title text-danger' id='exampleModalLabel'>" . $tituloModal . "</h5>";
-        echo "        <button type='button' class='close' data-dismiss='modal' id='close' aria-label='Close'>";
-        echo "          <span aria-hidden='true'>&times;</span>";
-        echo "        </button>";
-        echo "      </div>";
-        echo "      <div class='modal-body'>";
-        echo $contenidoModal;
-        echo "      </div>";
-        echo "      <div class='modal-footer'>";
-        echo $contenidoFooter;
-        echo "      </div>";
-        echo "    </div>";
-        echo "  </div>";
-        echo "</div>";
-        echo "<script>$('#modalForm').modal('show')</script>";
-        echo "<script>$('#close').click(function(){location.reload()});</script>";
-        echo "<script>$('#cancelar').click(function(){location.reload()});</script>";
     }
 }

@@ -8,7 +8,7 @@ $sesion = new Sesion();
 $empresa = $sesion->getEmpresa();
 $perfil = $sesion->getPerfil();
 $empresaEstado = $adicciones->listaAdicciones($empresa);
-if ($empresaEstado === null) {
+if($empresaEstado){
   $empresaEstado = [];
 }
 

@@ -6,21 +6,6 @@
 body {
   font-family: "Roboto", sans-serif;
   background: #fafafa;
-  overflow-x: hidden;   
-  overflow-y: scroll; 
-  min-width: 360px;
-}
-
-::-webkit-scrollbar{
-  width: 8px;
-}
-::-webkit-scrollbar-track{
-  border-radius: 5px;
-}
-::-webkit-scrollbar-thumb{
-  border-radius: 10px;
-  background-color:  #343a40;
-  border: black;
 }
 
 p {
@@ -201,7 +186,7 @@ body.scrolly {
   overflow-x: hidden;
 }
 
-.not-pointer {
+.not-pointer{
   pointer-events: none;
 }
 

@@ -5,13 +5,11 @@ require '../Modelo/ModeloUsuarios.php';
 
 $empresa = new Admin();
 $sesion = new Sesion();
-$usuarios = new Usuarios();
-$usuarioName = $sesion->getUsuario();
+$usuario = $sesion->getUsuario();
 $perfil = $sesion->getPerfil();
 
 $avatar = $sesion->getAvatar();
 $url = "../../images/avatar/" . $avatar;
-
 
 ?>
 
@@ -65,7 +63,7 @@ $url = "../../images/avatar/" . $avatar;
             <img src="<?php echo $url ?>" alt="Avatar" class="avatar" />
             <!-- Drop -->
             <div class="btn-group">
-              <button type="button" class="btn btn-link text-muted px-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $usuarioName ?><i class="fas fa-caret-down"></i></button>
+              <button type="button" class="btn btn-link text-muted px-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $usuario ?><i class="fas fa-caret-down"></i></button>
               <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item text-primary" href="#">Cerrar sesion <i class="fas fa-sign-out-alt"></i></a>
               </div>
@@ -77,7 +75,7 @@ $url = "../../images/avatar/" . $avatar;
 
       <!-- Inicio de conteido -->
       <div class="row d-flex justify-content-center">
-        <div class="col-12 col-md-12 col-lg-4 mb-4">
+        <div class="col-12 col-md-12 col-lg-6 mb-4">
           <div class="card">
             <div class="card-header"><i class="fas fa-plus-circle text-primary"></i> <b>Formulario de Usuarios</b></div>
             <div class="card-body">
@@ -101,7 +99,7 @@ $url = "../../images/avatar/" . $avatar;
                   </div>
                 </div>
                 <div class="form-row mb-3">
-                  <div class="col-12 mb-3">
+                  <div class="col mb-3">
                     <label for="perfil" class="form-label">Perfil</label>
                     <select class="form-control" id="perfil">
                       <?php
@@ -116,7 +114,7 @@ $url = "../../images/avatar/" . $avatar;
                       ?>
                     </select>
                   </div>
-                  <div class="col-12">
+                  <div class="col">
                     <label for="empresa" class="form-label">Empresa</label>
                     <select class="form-control" id="empresa">
                       <?php
@@ -134,51 +132,23 @@ $url = "../../images/avatar/" . $avatar;
                 </div>
                 <div class="form-row">
                   <div class="col mb-3">
-                    <button type="button" id="btn-cancelar-usuario" class="btn btn-outline-primary btn-block">Cancelar</button>
+                    <button type="button" id="btn-cancelar-usuario" class="btn btn-outline-primary col-12">Cancelar</button>
                   </div>
                   <div class="col">
-                    <button type="button" id="btn-ingresar-usuario" class="btn btn-outline-primary btn-block">Ingresar</button>
+                    <button type="button" id="btn-ingresar-usuario" class="btn btn-outline-primary col-12">Ingresar</button>
                   </div>
                 </div>
               </form>
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-12 col-lg-8">
+        <div class="col">
           <div class="card">
             <div class="card-header"><i class="fas fa-th-list text-primary"></i> <b>Lista de Usuarios</b></div>
-            <div class="card-body p-1">
-              <div class="table-responsive">
-                <table class="table border-top-0 table-hover table-sm">
-                  <tr class="border-top-none">
-                    <th>Documento</th>
-                    <th>Nombre</th>
-                    <th>Empresa</th>
-                    <th>Perfil</th>
-                    <th>Accion</th>
-                  </tr>
-                  <tr>
-                    <?php
-                    $listaDeUsuarios = $usuarios->listaDeUsuarios();
-
-                    if ($listaDeUsuarios != null) {
-                      foreach ($listaDeUsuarios as $listaDeUsuarios) {
-                    ?>
-                        <td><?php echo $listaDeUsuarios['documento'] ?></td>
-                        <td><?php echo $listaDeUsuarios['nombre'] ?></td>
-                        <td><?php echo $listaDeUsuarios['empresa'] ?></td>
-                        <td><?php echo $listaDeUsuarios['perfil'] ?></td>
-                        <td>
-                        <button class="btn btn-link btn-sm" type="button" value="<?php echo $listaDeUsuarios['id'] ?>" id="btn-editar-empresa"><i class="fas fa-edit text-primary" style='pointer-events: none;'></i></button>
-                        </td>
-                  </tr>
-              <?php
-                      }
-                    }
-
-              ?>
-                </table>
-              </div>
+            <div class="card-body">
+              <form class="">
+                <div class="form-row"></div>
+              </form>
             </div>
           </div>
         </div>
