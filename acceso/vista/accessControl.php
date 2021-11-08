@@ -1,17 +1,24 @@
 <?php
 require '../Modelo/ModeloAcceso.php';
 require '../../sesion/Modelo/ModeloSesion.php';
+require '../../configuracion/Modelo/ModeloConfig.php';
+date_default_timezone_set("America/Bogota");
 
-$adicciones =  new Acceso();
+$acceso =  new Acceso();
 $sesion = new Sesion();
+$config = new Config();
 
 $empresa = $sesion->getEmpresa();
 $perfil = $sesion->getPerfil();
-$empresaEstado = $adicciones->listaAdicciones($empresa);
+
+//Lista para controlar el estado de las adicciones en la vista
+$empresaEstado = $acceso->listaAdicciones($empresa);
 if ($empresaEstado === null) {
   $empresaEstado = [];
 }
 
+$date = date('Y-m-d');
+$Tiempo = date("h:i");
 
 $usuario = $sesion->getUsuario();
 $avatar = $sesion->getAvatar();
@@ -86,56 +93,98 @@ $url = "../../images/avatar/" . $avatar;
           <div class="card">
             <div class="card-header"><i class="fas fa-door-open text-primary"></i> <b>Formulario control de acceso</b></div>
             <div class="card-body">
-              <form action="">
+              <form id="frmAccess">
                 <div class="form-row mb-3">
-                  <div class="col-12 col-sm-12 col-lg-6 mb-3 mb-sm-3 mb-xl-0">
+                  <div class="col-12 col-sm-12 col-lg-6  col-lg-6 mb-3 mb-sm-3 mb-xl-0">
                     <label for="">Fecha de entrada: </label>
-                    <input type="date" class="form-control form-control-sm" disabled />
+                    <input type="hidden" id="empresaUser" value="<?php echo $empresa ?>">
+                    <input type="date" id="fechaEntrada" value="<?php echo $date ?>" class="form-control form-control-sm" disabled />
                   </div>
                   <div class="col">
                     <label for="">Hora de entrada: </label>
-                    <input type="time" class="form-control form-control-sm" disabled />
+                    <input type="time" id="horaEntrada" value="<?php echo $Tiempo ?>" class="form-control form-control-sm" disabled />
                   </div>
                 </div>
+
+
                 <div class="form-row mb-3">
                   <div class="col-12 col-sm-12 col-lg-6 col-xl-4 mb-3 mb-sm-3 mb-xl-0">
                     <label for="">Documento de identidad: </label>
-                    <input type="number" class="form-control form-control-sm" placeholder="Documento de identidad" />
+                    <input type="number" id="documento" class="form-control form-control-sm" placeholder="Documento de identidad" />
                   </div>
                   <div class="col-12 col-sm-12 col-lg-6 col-xl-4">
                     <label for="">Nombre: </label>
-                    <input type="text" class="form-control form-control-sm" placeholder="Nombre de la persona" />
+                    <input type="text" id="nombre" class="form-control form-control-sm" placeholder="Nombre de la persona" />
                   </div>
                   <div class="col-12 col-sm-12 col-lg-12 col-xl-4 mb-3 mb-sm-3 mb-xl-0">
                     <label for="">Genero: </label>
-                    <input type="text" class="form-control form-control-sm" placeholder="Genero de la persona" />
+                    <input type="text" id="genero" class="form-control form-control-sm" placeholder="Genero de la persona" />
                   </div>
                 </div>
 
                 <div class="form-row mb-4">
                   <div class="col-12 col-sm-12 col-lg-6 col-xl-4">
                     <label for="">Tipo de sangre: </label>
-                    <input type="text" class="form-control form-control-sm" placeholder="Tipo de sangre" />
+                    <input type="text" id="tSangre" class="form-control form-control-sm" placeholder="Tipo de sangre" />
                   </div>
                   <div class="col-12 col-sm-12 col-lg-6 col-xl-4 mb-3 mb-sm-3 mb-xl-0">
                     <label for="">Tipo de persona: </label>
-                    <select class="form-control form-control-sm" id="">
-                      <option value="">Visitante</option>
-                      <option value="">Admistrador</option>
+                    <select class="form-control form-control-sm" id="tPersona">
+                      <?php
+                      $listaPersona = $acceso->listaDePersonas();
+                      if ($listaPersona != null) {
+                        foreach ($listaPersona as $listaPersona) {
+                      ?>
+                          <option value="<?php echo $listaPersona['tipId'] ?>"><?php echo $listaPersona['tipPersona'] ?></option>
+                      <?php
+                        }
+                      }
+                      ?>
                     </select>
                   </div>
                   <div class="col-12 col-sm-12 col-lg-12 col-xl-4 mb-3 mb-sm-3 mb-xl-0">
                     <label for="">Zona de destino: </label>
-                    <select class="form-control form-control-sm" id="">
-                      <option value="">Piscina</option>
-                      <option value="">Consultorio</option>
+                    <select class="form-control form-control-sm" id="zDestino">
+                      <?php
+                      $ListaZonas = $config->listaDeZonasByEmpresa($empresa);
+                      if ($ListaZonas != null) {
+                        foreach ($ListaZonas as $ListaZonas) {
+                      ?>
+                          <option value="<?php echo $ListaZonas['zonId'] ?>"><?php echo $ListaZonas['zonNombre'] ?></option>
+                      <?php
+                        }
+                      }
+                      ?>
                     </select>
                   </div>
                 </div>
                 <?php
                 foreach ($empresaEstado as $empresaEstado) {
-                  if ($empresaEstado['adiCampo'] === "Arma" && $empresaEstado['adiEstado'] === "1") {
+                  if ($empresaEstado['adiCampo'] === "Origen" && $empresaEstado['adiEstado'] === "1") {
                 ?>
+                    <div class="form-row mb-4">
+                      <div class="col-12 col-sm-12 col-lg-12 mb-3 mb-sm-3 mb-xl-0">
+                        <label for="label">Origen: </label>
+                        <select class="form-control form-control-sm" id="origen">
+                          <?php
+                          $listaOrigen = $config->listaDeOrigenesByEmpresa($empresa);
+                          if ($listaOrigen != null) {
+                            foreach ($listaOrigen as $listaOrigen) {
+                          ?>
+                              <option value="<?php echo $listaOrigen['oriId'] ?>"><?php echo $listaOrigen['oriOrigen'] ?></option>
+                          <?php
+                            }
+                          }
+                          ?>
+                        </select>
+                      </div>
+                    </div>
+                  <?php
+                  }
+                  ?>
+                  <?php
+                  if ($empresaEstado['adiCampo'] === "Arma" && $empresaEstado['adiEstado'] === "1") {
+                  ?>
                     <div class="form-row mb-3">
                       <div class="col-12 col-sm-12 col-lg-6 mb-3 mb-sm-3 mb-xl-0">
                         <label for="label">Arma: </label>
@@ -158,7 +207,7 @@ $url = "../../images/avatar/" . $avatar;
                     <div class="form-row mb-3 d-flex justify-content-center">
                       <div class="col-12 col-sm-12 col-lg-6 mb-3 mb-sm-3 mb-xl-0">
                         <label for="label">Computador: </label>
-                        <select id="computador" class="form-control form-control-sm" id="">
+                        <select id="computador" class="form-control form-control-sm">
                           <option value="0">No</option>
                           <option value="1">Si</option>
                         </select>
@@ -187,16 +236,19 @@ $url = "../../images/avatar/" . $avatar;
                         <input type="text" id="placa" class="form-control form-control-sm" placeholder="Ingrese la placa del veihculo" disabled />
                       </div>
                     </div>
+                  <?php
+                  } else {
+                  ?>
                 <?php
                   }
                 }
                 ?>
                 <div class="form-row d-flex justify-content-center">
                   <div class="col-12 col-sm-12 col-lg-6 mb-3 mb-sm-3 mb-xl-0">
-                    <button class="btn btn-outline-primary btn-block btn-sm">Cancelar</button>
+                    <button type="button" id="btn-reset" onClick="reset" class="btn btn-outline-primary btn-block btn-sm">Cancelar</button>
                   </div>
                   <div class="col">
-                    <button class="btn btn-outline-primary btn-block btn-sm">Ingresar acceso</button>
+                    <button type="button" id="btn-ingresar-acceso" class="btn btn-outline-primary btn-block btn-sm">Ingresar acceso</button>
                   </div>
                 </div>
               </form>
@@ -216,8 +268,8 @@ $url = "../../images/avatar/" . $avatar;
                   <td>James Osorio Florez</td>
                   <td>
                     <div class="">
-                      <button class="btn btn-outline-primary btn-sm mr-1 text-center" style="width: 60px">Info</button>
-                      <button class="btn btn-outline-success btn-sm text-center" style="width: 60px">Salida</button>
+                      <button class="btn btn-outline-primary border-0 btn-sm mr-1 text-center" style="width: 60px">Info</button>
+                      <button class="btn btn-outline-success border-0 btn-sm text-center" style="width: 60px">Salida</button>
                     </div>
                   </td>
                 </tr>
@@ -249,15 +301,16 @@ $url = "../../images/avatar/" . $avatar;
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Popper.JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-  <!-- Bootstrap JS -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-  <script src="../../app/hbMenu.js"></script>
-  <script src="../app/disabledAccess.js"></script>
-  <script src="../../app/lateralMenu.js"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="../../app/hbMenu.js"></script>
+    <script src="../app/disabledAccess.js"></script>
+    <script src="../../app/lateralMenu.js"></script>
+    <script src="../app/script.js"></script>
+    <script src="../app/reset.js"></script>
 </body>
 
 </html>

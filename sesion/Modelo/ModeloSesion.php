@@ -34,7 +34,11 @@ class Sesion extends Conexion
 
             $Separador = str_replace(" ", ' ', $_SESSION['nombre']);
             $usuarioArray = preg_split("/\ /", $Separador);
-            $user = $usuarioArray[0] . " " . $usuarioArray[1];
+            if (count($usuarioArray) >= 2) {
+                $user = $usuarioArray[0] . " " . $usuarioArray[1];
+            } else {
+                $user = $_SESSION['nombre'];
+            }
             return $user;
         } else {
             header('Location: ../../index.php');
@@ -59,6 +63,7 @@ class Sesion extends Conexion
         }
         return $empresa;
     }
+
 
     public function getPerfil()
     {

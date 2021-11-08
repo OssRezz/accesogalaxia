@@ -255,7 +255,7 @@ $url = "../../images/avatar/" . $avatar;
                         <div class="card-header">
                             <i class="fas fa-th-list text-primary"></i> <b>Lista de adiciones</b>
                         </div>
-                        <div class="card-body p-1" style="overflow: auto; height: 13.2em;">
+                        <div class="card-body p-1" style="overflow: auto; height: 15em;">
                             <div class="table-responsiev">
                                 <table class="table table-hover table-sm">
                                     <thead>
