@@ -78,7 +78,7 @@ $url = "../../images/avatar/" . $avatar;
 
             <!-- Inicio de conteido -->
             <div class="row d-flex justify-content-center mb-4">
-                <div class="col-12 col-sm-12 col-lg-6 col-xl-6 mb-3">
+                <div class="col-12 col-sm-12 col-lg-6 col-xl-6 mb-5">
                     <div class="card">
                         <div class="card-header">
                             <i class="fas fa-key text-primary"></i> <b>Cambiar contraseña</b>
@@ -105,7 +105,7 @@ $url = "../../images/avatar/" . $avatar;
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-12 col-lg-6 col-xl-6 mb-3">
+                <div class="col-12 col-sm-12 col-lg-6 col-xl-6 mb-5">
                     <div class="card">
                         <div class="card-header">
                             <i class="fas fa-exclamation-circle text-danger"></i> <b>Lista de bloqueados</b>
@@ -149,7 +149,7 @@ $url = "../../images/avatar/" . $avatar;
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-12 col-lg-6 col-xl-6 mb-3">
+                <div class="col-12 col-sm-12 col-lg-6 col-xl-6 mb-4">
                     <div class="card">
                         <div class="card-header">
                             <input type="hidden" id="empresaUser" value="<?php echo $empresaUser ?>">
@@ -205,7 +205,7 @@ $url = "../../images/avatar/" . $avatar;
                         </div>
                         <div class="card-body p-1" style="overflow: auto; height: 13.2em;">
                             <div class="table-responsive">
-                                <table class="table table-sm table-hover" id="tableBussiness">
+                                <table class="table table-sm table-hover">
                                     <tr>
                                         <thead>
                                             <th class="border-top-0">Origen</th>

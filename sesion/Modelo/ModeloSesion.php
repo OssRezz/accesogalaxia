@@ -11,11 +11,10 @@ class Sesion extends Conexion
     }
 
 
-    public function iniciarSesion($useDocumento, $usePassword)
+    public function iniciarSesion($useDocumento)
     {
-        $statement = $this->db->prepare("SELECT * FROM `tblusers` WHERE useDocumento= :useDocumento AND usePassword= :usePassword");
+        $statement = $this->db->prepare("SELECT * FROM `tblusers` WHERE useDocumento= :useDocumento LIMIT 1");
         $statement->bindParam(":useDocumento", $useDocumento);
-        $statement->bindParam(":usePassword", $usePassword);
         $statement->execute();
         if ($statement->rowCount() == 1) {
             $consulta = $statement->fetch();
@@ -86,5 +85,17 @@ class Sesion extends Conexion
             $listaDeRoles[] = $consulta;
         }
         return $listaDeRoles;
+    }
+
+    public function UserVerify($documento)
+    {
+        $listUserVerify = null;
+        $statement = $this->db->prepare("SELECT * FROM tblusers WHERE useDocumento=:documento LIMIT 1");
+        $statement->bindParam(":documento", $documento);
+        $statement->execute();
+        while ($consulta = $statement->fetch()) {
+            $listUserVerify[] = $consulta;
+        }
+        return $listUserVerify;
     }
 }

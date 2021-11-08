@@ -82,7 +82,7 @@ $url = "../../images/avatar/" . $avatar;
       </nav>
 
       <div class="row">
-        <div class="col mb-4">
+        <div class="col-12 mb-4">
           <div class="card">
             <div class="card-header"><i class="fas fa-door-open text-primary"></i> <b>Formulario control de acceso</b></div>
             <div class="card-body">
@@ -98,34 +98,33 @@ $url = "../../images/avatar/" . $avatar;
                   </div>
                 </div>
                 <div class="form-row mb-3">
-                  <div class="col-12 col-sm-12 col-lg-6 mb-3 mb-sm-3 mb-xl-0">
+                  <div class="col-12 col-sm-12 col-lg-6 col-xl-4 mb-3 mb-sm-3 mb-xl-0">
                     <label for="">Documento de identidad: </label>
                     <input type="number" class="form-control form-control-sm" placeholder="Documento de identidad" />
                   </div>
-                  <div class="col">
+                  <div class="col-12 col-sm-12 col-lg-6 col-xl-4">
                     <label for="">Nombre: </label>
                     <input type="text" class="form-control form-control-sm" placeholder="Nombre de la persona" />
                   </div>
-                </div>
-                <div class="form-row mb-3">
-                  <div class="col-12 col-sm-12 col-lg-6 mb-3 mb-sm-3 mb-xl-0">
+                  <div class="col-12 col-sm-12 col-lg-12 col-xl-4 mb-3 mb-sm-3 mb-xl-0">
                     <label for="">Genero: </label>
                     <input type="text" class="form-control form-control-sm" placeholder="Genero de la persona" />
                   </div>
-                  <div class="col">
+                </div>
+
+                <div class="form-row mb-4">
+                  <div class="col-12 col-sm-12 col-lg-6 col-xl-4">
                     <label for="">Tipo de sangre: </label>
                     <input type="text" class="form-control form-control-sm" placeholder="Tipo de sangre" />
                   </div>
-                </div>
-                <div class="form-row mb-3">
-                  <div class="col-12 col-sm-12 col-lg-6 mb-3 mb-sm-3 mb-xl-0">
+                  <div class="col-12 col-sm-12 col-lg-6 col-xl-4 mb-3 mb-sm-3 mb-xl-0">
                     <label for="">Tipo de persona: </label>
                     <select class="form-control form-control-sm" id="">
                       <option value="">Visitante</option>
                       <option value="">Admistrador</option>
                     </select>
                   </div>
-                  <div class="col">
+                  <div class="col-12 col-sm-12 col-lg-12 col-xl-4 mb-3 mb-sm-3 mb-xl-0">
                     <label for="">Zona de destino: </label>
                     <select class="form-control form-control-sm" id="">
                       <option value="">Piscina</option>
@@ -206,9 +205,9 @@ $url = "../../images/avatar/" . $avatar;
         </div>
         <div class="col">
           <div class="card">
-            <div class="card-header border-bottom-0"><i class="fas fa-th-list text-primary"></i> <b>Rendimientos registrados</b></div>
-            <div class="card-body p-0">
-              <table class="table border table-hover table-sm">
+            <div class="card-header border-bottom-0"><i class="fas fa-th-list text-primary"></i> <b>Accesos registrados</b></div>
+            <div class="card-body p-0 px-3">
+              <table class="table  table-hover table-sm">
                 <tr>
                   <th>Persona</th>
                   <th>Acciòn</th>
@@ -216,13 +215,35 @@ $url = "../../images/avatar/" . $avatar;
                 <tr>
                   <td>James Osorio Florez</td>
                   <td>
-                    <div class="d-flex justify-content-end">
+                    <div class="">
                       <button class="btn btn-outline-primary btn-sm mr-1 text-center" style="width: 60px">Info</button>
                       <button class="btn btn-outline-success btn-sm text-center" style="width: 60px">Salida</button>
                     </div>
                   </td>
                 </tr>
               </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 col-sm-12 col-lg-4 col-xl-4">
+          <div class="card">
+            <div class="card-header"><i class="fas fa-search text-primary"></i><b> Acciones</b></div>
+            <div class="card-body p-0">
+              <div class="col mt-3 mb-3">
+                <label for="">Buscar acceso</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="BuscarProduccion">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="submit" id="btn-buscar-produccion">
+                      <i class="fa fa-search" style="pointer-events: none;"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <label for="">Salida de acceso para todos</label>
+                <button class="btn btn-outline-primary btn-block">Salida total</button>
+              </div>
             </div>
           </div>
         </div>
