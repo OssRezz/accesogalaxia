@@ -43,6 +43,47 @@ class Acceso extends Conexion
         return $listaAccesoByDoc;
     }
 
+    public function listaAccesoById($id)
+    {
+        $listaAccesoByDoc = null;
+        $statement = $this->db->prepare("SELECT * FROM `tblaccesos` WHERE accId=:id LIMIT 1");
+        $statement->bindParam(":id", $id);
+        $statement->execute();
+        while ($consulta = $statement->fetch()) {
+            $listaAccesoByDoc[] = $consulta;
+        }
+        return $listaAccesoByDoc;
+    }
+
+    public function listaAccesos($empresa)
+    {
+        $listaAccesos = null;
+        $statement = $this->db->prepare("SELECT `accId`,`fkEmpresa`,`accDocumento`, `accNombre`, `accFechaEntrada`,
+         `accHoraEntrada`, `accFechaSalida`, `accHoraSalida` FROM `tblaccesos`
+        WHERE fkEmpresa=:empresa
+        ORDER BY accId  DESC");
+        $statement->bindParam(":empresa", $empresa);
+        $statement->execute();
+        while ($consulta = $statement->fetch()) {
+            $listaAccesos[] = $consulta;
+        }
+        return $listaAccesos;
+    }
+
+    public function actalizarSalida($id, $fechaSalida, $horaSalida)
+    {
+        $statement = $this->db->prepare("UPDATE `tblaccesos` SET `accFechaSalida`=:fechaSalida,
+        `accHoraSalida`=:horaSalida WHERE accId=:id");
+        $statement->bindParam(":id", $id);
+        $statement->bindParam(":fechaSalida", $fechaSalida);
+        $statement->bindParam(":horaSalida", $horaSalida);
+        if ($statement->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     public function ingresarAcceso($fkZona, $fkPersona, $fkOrigen, $fkEmpresa, $documento, $nombre, $genero, $rh, $placa, $arma, $computador, $fechaEntrada, $horaEntrada, $fechaSalida, $horaSalida)
     {

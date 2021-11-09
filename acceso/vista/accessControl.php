@@ -261,18 +261,40 @@ $url = "../../images/avatar/" . $avatar;
             <div class="card-body p-0 px-3">
               <table class="table  table-hover table-sm">
                 <tr>
-                  <th>Persona</th>
-                  <th>Acciòn</th>
+                  <th class="">Documento</th>
+                  <th class="text-center">Nombre</th>
+                  <th class="text-center">Hora entrada</th>
+                  <th class="text-center">Acciòn</th>
                 </tr>
                 <tr>
-                  <td>James Osorio Florez</td>
-                  <td>
-                    <div class="">
-                      <button class="btn btn-outline-primary border-0 btn-sm mr-1 text-center" style="width: 60px">Info</button>
-                      <button class="btn btn-outline-success border-0 btn-sm text-center" style="width: 60px">Salida</button>
-                    </div>
-                  </td>
+                  <?php
+                  $listaAcceso = $acceso->listaAccesos($empresa);
+                  if ($listaAcceso != null) {
+                    foreach ($listaAcceso as $listaAcceso) {
+
+                  ?>
+                      <td class=""><?php echo $listaAcceso['accDocumento']  ?></td>
+                      <td class="text-center"><?php echo $listaAcceso['accNombre']  ?></td>
+                      <td class="text-center"><?php echo $listaAcceso['accHoraEntrada']  ?></td>
+                      <td class="text-center">
+                        <?php
+                        if ($listaAcceso['accHoraSalida'] === null) {
+                        ?>
+                          <button class="btn btn-outline-primary  btn-sm mr-1 text-center" value="<?php echo $listaAcceso['accId']  ?>" style="width: 60px">Info</button>
+                          <button class="btn btn-outline-success  btn-sm text-center" id="btn-salida" value="<?php echo $listaAcceso['accId']  ?>" style="width: 60px">Salida</button>
+                        <?php
+                        } else {
+                        ?>
+                          <button class="btn btn-outline-primary  btn-sm mr-1 text-center" value="<?php echo $listaAcceso['accId']  ?>" style="width: 60px">Info</button>
+                        <?php
+                        }
+                        ?>
+                      </td>
                 </tr>
+            <?php
+                    }
+                  }
+            ?>
               </table>
             </div>
           </div>
@@ -310,7 +332,6 @@ $url = "../../images/avatar/" . $avatar;
     <script src="../app/disabledAccess.js"></script>
     <script src="../../app/lateralMenu.js"></script>
     <script src="../app/script.js"></script>
-    <script src="../app/reset.js"></script>
 </body>
 
 </html>
