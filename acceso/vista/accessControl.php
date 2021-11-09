@@ -263,6 +263,7 @@ $url = "../../images/avatar/" . $avatar;
                 <tr>
                   <th class="">Documento</th>
                   <th class="text-center">Nombre</th>
+                  <th class="text-center"></th>
                   <th class="text-center">Hora entrada</th>
                   <th class="text-center">Acciòn</th>
                 </tr>
@@ -275,6 +276,30 @@ $url = "../../images/avatar/" . $avatar;
                   ?>
                       <td class=""><?php echo $listaAcceso['accDocumento']  ?></td>
                       <td class="text-center"><?php echo $listaAcceso['accNombre']  ?></td>
+                      <td class="text-center">
+                        <?php
+                        if ($listaAcceso['accPlaca'] != null) {
+                        ?>
+                          <i class="fas fa-car"></i>
+                        <?php
+                        }
+                        ?>
+                        <?php
+                        if ($listaAcceso['accArma'] != null) {
+                        ?>
+                          <img src="../../images/gun-solid.svg" class="pb-1" width="20" height="20">
+                        <?php
+                        }
+                        ?>
+                        <?php
+                        if ($listaAcceso['accPc'] != null) {
+                        ?>
+                          <i class="fas fa-laptop"></i>
+                        <?php
+                        }
+                        ?>
+
+                      </td>
                       <td class="text-center"><?php echo $listaAcceso['accHoraEntrada']  ?></td>
                       <td class="text-center">
                         <?php

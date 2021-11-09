@@ -59,7 +59,7 @@ class Acceso extends Conexion
     {
         $listaAccesos = null;
         $statement = $this->db->prepare("SELECT `accId`,`fkEmpresa`,`accDocumento`, `accNombre`, `accFechaEntrada`,
-         `accHoraEntrada`, `accFechaSalida`, `accHoraSalida` FROM `tblaccesos`
+         `accHoraEntrada`, `accFechaSalida`, `accHoraSalida`,accPc,accArma,accPlaca FROM `tblaccesos`
         WHERE fkEmpresa=:empresa
         ORDER BY accId  DESC");
         $statement->bindParam(":empresa", $empresa);
